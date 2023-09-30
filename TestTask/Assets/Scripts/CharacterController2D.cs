@@ -5,6 +5,7 @@ public class CharacterController2D : MonoBehaviour
     private Animator animator;
     public int speed = 2;
     private JoystickController joystick; // Reference to the joystick controller
+    private bool playerStayLeft;
 
     private void Start()
     {
@@ -17,15 +18,20 @@ public class CharacterController2D : MonoBehaviour
         
         if (joystick.Horizontal() != 0 || joystick.Vertical() != 0)
         {
+            animator.SetBool("PlayerStayLeft", false);
+
             if (joystick.Horizontal() < 0) //&& !animator.GetBool("PlayerWalkRight"))
             {
                 animator.SetBool("PlayerWalkLeft", true);
                 animator.SetBool("PlayerWalkRight", false);
+
+                playerStayLeft =true;
             }
             else if (joystick.Horizontal() > 0)
             {
                 animator.SetBool("PlayerWalkLeft", false);
                 animator.SetBool("PlayerWalkRight", true);
+                playerStayLeft = false;
             }
 
             float moveHorizontal = joystick.Horizontal();
@@ -38,7 +44,16 @@ public class CharacterController2D : MonoBehaviour
         {
             animator.SetBool("PlayerWalkLeft", false);
             animator.SetBool("PlayerWalkRight", false);
+
+            if (playerStayLeft)
+            {
+                animator.SetBool("PlayerStayLeft", true);
+
+            }
+            else
+            {
+                animator.SetBool("PlayerStayLeft", false);
+            }
         }
-        
     }
 }

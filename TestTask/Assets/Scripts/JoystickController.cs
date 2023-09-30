@@ -23,7 +23,7 @@ public class JoystickController : MonoBehaviour, IDragHandler, IPointerUpHandler
             pos.y /= bgImage.rectTransform.sizeDelta.y;
 
             // Get the input vector
-            inputVector = new Vector3(pos.x * 2 + 1, 0, pos.y * 2 - 1);
+            inputVector = new Vector3(pos.x * 2, 0, pos.y * 2);
             inputVector = (inputVector.magnitude > 1.0f) ? inputVector.normalized : inputVector;
 
             // Move joystick image

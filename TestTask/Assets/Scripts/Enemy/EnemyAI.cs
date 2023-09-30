@@ -9,14 +9,20 @@ public class EnemyAI : MonoBehaviour
     private Animator animator;
     public float speed = 10f;
     private GameObject player;
+    public bool isAttack;
 
-    public bool playerDetected;
+    private bool playerDetected;
     public float hitDistance=2f;
 
     private void Start()
     {
         animator=GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public void PlayerDetected()
+    {
+        playerDetected=true;
     }
 
     private void Update()
@@ -39,21 +45,26 @@ public class EnemyAI : MonoBehaviour
         }
         if (Vector3.Distance(transform.position, player.transform.position) > hitDistance)
         {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("EnemyHit")) 
+            if (!isAttack)
             {
+                animator.SetBool("IsAttacking", false); // Убедитесь, что атака выключена
                 animator.SetBool("EnemyWalk", true);
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-                
             }
             
         }
         else
         {
-            animator.SetBool("EnemyWalk", false);
-            animator.SetTrigger("EnemyHit");
+            if (!isAttack)
+            {
+                animator.SetBool("EnemyWalk", false);
+                animator.SetBool("IsAttacking", true); // Установите атаку включенной
+            }
             
+            
+            //animator.SetTrigger("EnemyHit");
         }
-        
+
     }
     
 

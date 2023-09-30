@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Player\SpriteRender.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\GunFlip.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

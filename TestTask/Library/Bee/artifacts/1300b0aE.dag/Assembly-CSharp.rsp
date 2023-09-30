@@ -383,6 +383,7 @@
 "Assets/Scripts/Enemy/HealthSistem.cs"
 "Assets/Scripts/EnemyController.cs"
 "Assets/Scripts/EnemyDetect.cs"
+"Assets/Scripts/GunFlip.cs"
 "Assets/Scripts/Inventory.cs"
 "Assets/Scripts/JoystickController.cs"
 "Assets/Scripts/Player/CameraMove.cs"

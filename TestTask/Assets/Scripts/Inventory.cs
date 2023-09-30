@@ -171,18 +171,27 @@ public class Inventory : MonoBehaviour
 
     public void SubButton(GameObject subButton)
     {
-        subButton.SetActive(!subButton.activeSelf);
+        int id = int.Parse(subButton.transform.parent.name);
+
+        if (items[id].count > 0)
+        {
+            subButton.SetActive(!subButton.activeSelf);
+        }
     }
 
     public void DeliteItem(int id)
     {
-        
-
-        if (items[id].count>0)
+        if (items[id].count > 0)
         {
             items[id].count--;
+
+            if (items[id].count == 0)
+            {
+                // Отключаем кнопку, если количество элементов стало равно 0
+                GameObject subButton = items[id].itemObj.transform.GetChild(1).gameObject;
+                subButton.SetActive(false);
+            }
         }
-        
 
         UpdateInventory();
     }
