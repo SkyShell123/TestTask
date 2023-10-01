@@ -61,28 +61,21 @@
     <Compile Include="Assets\Scripts\Player\CharacterControls.cs" />
     <Compile Include="Assets\Scripts\AutoAim.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyHit.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerHealthSistem.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerHealthSystem.cs" />
     <Compile Include="Assets\Scripts\AimController.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyBullet.cs" />
-    <Compile Include="Assets\Scripts\AmmoCountMenu.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\EnemyDetect.cs" />
     <Compile Include="Assets\Scripts\SaveLoad.cs" />
     <Compile Include="Assets\Scripts\JoystickController.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyDrops.cs" />
     <Compile Include="Assets\Scripts\DataBase.cs" />
-    <Compile Include="Assets\Scripts\Enemy\AnimationController.cs" />
-    <Compile Include="Assets\Scripts\Enemy\HealthSistem.cs" />
+    <Compile Include="Assets\Scripts\Enemy\HealthSystem.cs" />
     <Compile Include="Assets\Scripts\Enemy\Drop.cs" />
     <Compile Include="Assets\Scripts\Player\WeaponsGuns.cs" />
     <Compile Include="Assets\Scripts\Player\CameraMove.cs" />
     <Compile Include="Assets\Scripts\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAI.cs" />
     <Compile Include="Assets\Scripts\Player\ItemsFind.cs" />
-    <Compile Include="Assets\Scripts\Player\SpriteRender.cs" />
-    <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\EnemyController.cs" />
-    <Compile Include="Assets\Scripts\GunFlip.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5936b82b347de1438c0a0c13b28b677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  additionalObject: {fileID: 685054364}
 --- !u!1 &1282482392963552325
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,11 +325,11 @@ MonoBehaviour:
   AmmoMenu: {fileID: 0}
   ShotDir: {fileID: 1553592826368241789}
   Bullet: {fileID: 7722585763857617471, guid: c41fee7dfe9022a4bafff8224aa94a4c, type: 3}
-  AmmoMemory: 30
+  AmmoMemory: 15
   MaxAmmoMemory: 500
-  Damage: 5
+  Damage: 2
   timeShot: 0
-  startTime: 0.1
+  startTime: 0.2
   SpeedShoot: 10
   destroyTime: 5
   rechargeTime: 2
@@ -1043,7 +1044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a808f96c95a3454f8ae65e0da235cb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 8
 --- !u!95 &6236819243529290580
 Animator:
   serializedVersion: 5
@@ -1095,7 +1096,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1588934214811556579}
-  - component: {fileID: 685054363}
   - component: {fileID: 685054364}
   m_Layer: 0
   m_Name: "\u043F\u0440\u0430\u0432\u0430\u044F \u0440\u0443\u043A\u0430"
@@ -1121,18 +1121,6 @@ Transform:
   m_Father: {fileID: 1282482392963552322}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &685054363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4539411983110987227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5936b82b347de1438c0a0c13b28b677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &685054364
 MonoBehaviour:
   m_ObjectHideFlags: 0

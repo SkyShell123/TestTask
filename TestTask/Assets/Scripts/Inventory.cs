@@ -3,84 +3,72 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
 using System;
 
 public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
 
-    public List<ItemInventory> items = new();
+    public List<ItemInventory> items = new(); // Список предметов в инвентаре
 
-    public DataBase data;
+    public DataBase data; // Ссылка на базу данных предметов
 
-    public GameObject inventoryItemPrefab;
+    public GameObject inventoryItemPrefab; // Префаб для отображения предметов в инвентаре
 
-    public GameObject InventoryMainObj; 
-    public int maxCount;
+    public GameObject InventoryMainObj; // Главный объект инвентаря
 
-    public Camera cam;
-    public EventSystem eventSystem;
+    public int maxCount; // Максимальное количество ячеек инвентаря
 
-    public Vector3 offset;
+    public Camera cam; // Ссылка на камеру для работы с позициями предметов
 
-    public GameObject backGround;
-    public int maxItemCell;
+    public EventSystem eventSystem; // Ссылка на EventSystem для обработки событий в UI
+
+    public Vector3 offset; // Смещение позиции предметов в инвентаре
+
+    public GameObject backGround; // Объект заднего фона инвентаря
+
+    public int maxItemCell; // Максимальное количество одного типа предметов в ячейке
 
     private void Awake()
     {
         Instance = this;
 
-        AddGraphics();
+        AddGraphics(); // Создание графических элементов инвентаря
 
+        UpdateInventory(); // Обновление отображения инвентаря
+    }
+
+    // Сериализуем инвентарь в список предметов для сохранения
+    public List<Items> SaveInventory()
+    {
+        List<Items> _items = new();
+
+        for (int i = 0; i < items.Count; i++)
+        {
+            Items newItem = new()
+            {
+                id = items[i].id,
+                count = items[i].count
+            };
+            _items.Add(newItem);
+        }
+
+        return _items;
+    }
+
+    // Загружаем инвентарь из списка предметов
+    public void LoadInventory(List<Items> _items)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            items[i].id = _items[i].id;
+            items[i].count = _items[i].count;
+        }
 
         UpdateInventory();
     }
 
-
-    //public List<Items> SaveInventory()
-    //{
-    //    List<Items> _items = new(); // Initialize the list
-
-    //    // Loop through each item in the "items" collection
-    //    foreach (var item in items)
-    //    {
-    //        // Create a new Items object and copy the properties
-    //        Items newItem = new()
-    //        {
-    //            id = item.id,
-    //            idCell = int.Parse(item.itemObj.name),
-    //            count = item.count
-    //        };
-
-    //        // Add the new item to the "_items" list
-    //        _items.Add(newItem);
-    //    }
-
-    //    return _items;
-    //}
-
-    //public void LoadInventory(List<Items> _items)
-    //{
-    //    // Check if the number of items in "_items" is the same as in "items"
-    //    //if (items.Count != _items.Count)
-    //    //{
-    //    //    // Handle the case where the counts don't match (e.g., show an error message).
-    //    //    // You might want to add more error handling here.
-    //    //    return;
-    //    //}
-
-    //    // Loop through each item in "items" and update its properties
-    //    for (int i = 0; i < items.Count; i++)
-    //    {
-    //        items[i].id = _items[i].id;
-    //        items[i].count = _items[i].count;
-    //    }
-
-    //    // Call a method to update the inventory display or perform other necessary tasks
-    //    UpdateInventory();
-    //}
-
+    // Попытка взять предмет и добавить его в инвентарь
     public bool TakeItem(Item item)
     {
         if (AddItem(SeachSameItem(item), item))
@@ -90,6 +78,7 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
+    // Открыть/закрыть инвентарь
     public void BackPack()
     {
         backGround.SetActive(!backGround.activeSelf);
@@ -99,11 +88,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // Поиск ячейки с предметом того же типа или пустой ячейки
     public int SeachSameItem(Item item)
     {
         for (int i = 0; i < maxCount; i++)
         {
-            if (items[i].id==item.id)
+            if (items[i].id == item.id)
             {
                 if (items[i].count < maxItemCell)
                 {
@@ -121,13 +111,12 @@ public class Inventory : MonoBehaviour
         }
 
         return -1;
-        
-
     }
 
+    // Добавить предмет в инвентарь по указанной ячейке
     public bool AddItem(int id, Item item)
     {
-        if (id!=-1)
+        if (id != -1)
         {
             items[id].id = item.id;
             items[id].count++;
@@ -142,22 +131,24 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
+    // Создание графических элементов инвентаря
     public void AddGraphics()
     {
-        for (int i = 0; i < maxCount; i++) {
+        for (int i = 0; i < maxCount; i++)
+        {
             GameObject newItem = Instantiate(inventoryItemPrefab, InventoryMainObj.transform);
 
             newItem.name = i.ToString();
 
-            ItemInventory inventory = new()
+            ItemInventory inventory = new ItemInventory()
             {
                 itemObj = newItem
             };
 
             RectTransform rect = newItem.GetComponent<RectTransform>();
             rect.localPosition = new Vector3(0, 0, 0);
-            rect.localScale=new Vector3(1, 1, 1);
-            newItem.GetComponentInChildren<RectTransform>().localScale= new Vector3(1, 1, 1);
+            rect.localScale = new Vector3(1, 1, 1);
+            newItem.GetComponentInChildren<RectTransform>().localScale = new Vector3(1, 1, 1);
 
             Button button = newItem.GetComponent<Button>();
             Button subButton = newItem.transform.GetChild(1).GetComponent<Button>();
@@ -169,6 +160,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // Обработчик нажатия на кнопку "Убрать" для предмета
     public void SubButton(GameObject subButton)
     {
         int id = int.Parse(subButton.transform.parent.name);
@@ -179,6 +171,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // Удаление предмета из инвентаря по указанной ячейке
     public void DeliteItem(int id)
     {
         if (items[id].count > 0)
@@ -187,7 +180,6 @@ public class Inventory : MonoBehaviour
 
             if (items[id].count == 0)
             {
-                // Отключаем кнопку, если количество элементов стало равно 0
                 GameObject subButton = items[id].itemObj.transform.GetChild(1).gameObject;
                 subButton.SetActive(false);
             }
@@ -196,11 +188,12 @@ public class Inventory : MonoBehaviour
         UpdateInventory();
     }
 
+    // Обновление отображения инвентаря
     public void UpdateInventory()
     {
-        for(int i = 0;i < maxCount;i++) 
+        for (int i = 0; i < maxCount; i++)
         {
-            if (items[i].id !=0 && items[i].count>1)
+            if (items[i].id != 0 && items[i].count > 1)
             {
                 items[i].itemObj.GetComponentInChildren<Text>().text = items[i].count.ToString();
             }
@@ -215,14 +208,12 @@ public class Inventory : MonoBehaviour
                 items[i].itemObj.GetComponent<Image>().sprite = data.items[0].sprite;
             }
 
-
             items[i].itemObj.GetComponent<Image>().sprite = data.items[items[i].id].sprite;
         }
     }
 }
 
 [Serializable]
-
 public class ItemInventory
 {
     public int id;
@@ -230,9 +221,9 @@ public class ItemInventory
     public int count;
 }
 
-//public class Items
-//{
-//    public int id;
-//    public int idCell;
-//    public int count;
-//}
+[Serializable]
+public class Items
+{
+    public int id;
+    public int count;
+}

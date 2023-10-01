@@ -452,9 +452,8 @@ GameObject:
   - component: {fileID: 4696099119794993634}
   - component: {fileID: 2033208818}
   - component: {fileID: 5355556323560079067}
-  - component: {fileID: -156734384137445797}
-  - component: {fileID: 677957271051894853}
   - component: {fileID: 1263975580}
+  - component: {fileID: 5265198230999883808}
   m_Layer: 2
   m_Name: Zombie
   m_TagString: Untagged
@@ -493,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09444cd8a6e1da45b7cf2f0cfa17d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 7
   isAttack: 0
   hitDistance: 2
 --- !u!50 &5355556323560079067
@@ -517,32 +516,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-156734384137445797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4072355137133630573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d53051a2c44cd9449afeaaa841ea23a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &677957271051894853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4072355137133630573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10904af7029623e4592568f6e1d435bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bar: {fileID: 3155662406658343300}
-  health: 10
 --- !u!95 &1263975580
 Animator:
   serializedVersion: 5
@@ -564,6 +537,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5265198230999883808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4072355137133630573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10904af7029623e4592568f6e1d435bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 3155662406658343300}
+  health: 10
 --- !u!1 &4102745086488671876
 GameObject:
   m_ObjectHideFlags: 0
